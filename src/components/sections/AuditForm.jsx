@@ -146,7 +146,6 @@ export function AuditForm({ heading, subheading }) {
               <form
                 onSubmit={handleSubmit}
                 className="rounded-2xl border border-line bg-panel/60 p-6 backdrop-blur-sm md:p-9"
-                noValidate
               >
                 {/* honeypot */}
                 <input
@@ -168,6 +167,7 @@ export function AuditForm({ heading, subheading }) {
                       name="brand"
                       type="text"
                       required
+                      aria-required="true"
                       placeholder="Your brand"
                       className={fieldClass}
                     />
@@ -222,6 +222,7 @@ export function AuditForm({ heading, subheading }) {
                       name="name"
                       type="text"
                       required
+                      aria-required="true"
                       placeholder="First and last name"
                       className={fieldClass}
                     />
@@ -235,6 +236,7 @@ export function AuditForm({ heading, subheading }) {
                       name="email"
                       type="email"
                       required
+                      aria-required="true"
                       placeholder="you@brand.com"
                       className={fieldClass}
                     />

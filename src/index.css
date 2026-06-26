@@ -93,7 +93,7 @@
     border: 2px solid var(--background);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: color-mix(in oklab, var(--primary) 80%, black);
+    background-color: #be5e25;
   }
 
   body {
@@ -160,16 +160,22 @@
     .container-x { padding-inline: 2.5rem; }
   }
 
-  /* Frosted glass surface */
+  /* Frosted glass surface. Uses rgba (not color-mix/oklab) for reliable cross
+     browser rendering, with the webkit prefix and an opaque fallback when the
+     browser cannot blur the backdrop, so it never looks see through. */
   .glass {
-    background-color: color-mix(in oklab, var(--background) 62%, transparent);
-    backdrop-filter: saturate(180%) blur(16px);
+    background-color: rgba(254, 252, 251, 0.62);
     -webkit-backdrop-filter: saturate(180%) blur(16px);
+    backdrop-filter: saturate(180%) blur(16px);
   }
   .glass-dark {
-    background-color: color-mix(in oklab, var(--night) 55%, transparent);
-    backdrop-filter: saturate(160%) blur(18px);
+    background-color: rgba(16, 15, 14, 0.55);
     -webkit-backdrop-filter: saturate(160%) blur(18px);
+    backdrop-filter: saturate(160%) blur(18px);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass { background-color: rgba(254, 252, 251, 0.94); }
+    .glass-dark { background-color: rgba(16, 15, 14, 0.92); }
   }
 
   /* Soft warm gray component card */
@@ -189,7 +195,7 @@
   /* Subtle radial glow used on dark surfaces */
   .glow-orange {
     background:
-      radial-gradient(60% 60% at 50% 0%, color-mix(in oklab, var(--primary) 26%, transparent) 0%, transparent 70%);
+      radial-gradient(60% 60% at 50% 0%, rgba(238, 117, 46, 0.26) 0%, transparent 70%);
   }
 
   /* Marquee track */

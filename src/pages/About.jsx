@@ -123,13 +123,13 @@ export default function About() {
       <section className="py-20 md:py-28">
         <div className="container-x">
           <Reveal className="max-w-2xl">
-            <Eyebrow accent>The team · {TEAM.length} people</Eyebrow>
+            <Eyebrow accent>Leadership</Eyebrow>
             <h2 className="mt-4 text-3xl font-semibold tracking-[-0.045em] md:text-5xl">
-              A small crew with sharp instincts.
+              The people who own your growth.
             </h2>
             <p className="mt-5 text-pretty text-muted md:text-lg">
-              No account managers passing you along. You work directly with the
-              people doing the work.
+              You work directly with the founders, not an account manager. Behind
+              them sits a focused team of buyers, creatives, and strategists.
             </p>
           </Reveal>
 

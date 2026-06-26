@@ -36,7 +36,7 @@ function Tile({ src }) {
     <div className="aspect-square w-[150px] shrink-0 overflow-hidden rounded-xl border border-line bg-panel md:w-[200px]">
       <img
         src={src}
-        alt="Monday ad creative example"
+        alt=""
         loading="lazy"
         decoding="async"
         width="200"

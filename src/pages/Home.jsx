@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Monday | Full Stack Growth Partner for Scaling eCommerce Brands"
+        title="Monday"
         description="Monday is a boutique full stack growth agency for eCommerce DTC brands. Paid ads, creative production, email, and landing pages engineered to scale you to 8 and 9 figures."
         path="/"
       />

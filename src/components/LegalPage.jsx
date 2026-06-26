@@ -55,13 +55,6 @@ export function LegalPage({
                 </div>
               </Reveal>
             ))}
-
-            <Reveal>
-              <p className="rounded-xl border border-line bg-panel/60 px-5 py-4 text-sm text-muted">
-                This page is professional placeholder copy and should be reviewed
-                by legal counsel before launch.
-              </p>
-            </Reveal>
           </div>
         </div>
       </section>

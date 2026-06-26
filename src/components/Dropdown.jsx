@@ -98,6 +98,7 @@ export function Dropdown({
         break;
       case "Tab":
         setOpen(false);
+        triggerRef.current?.focus();
         break;
       default:
         break;

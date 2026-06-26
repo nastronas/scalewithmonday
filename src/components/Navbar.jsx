@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/Button";
 import { NAV_LINKS } from "@/data/site";
+import { useLenis } from "@/lib/lenis.jsx";
 import { cn } from "@/lib/cn";
 
 /*
@@ -18,6 +19,18 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
   const location = useLocation();
+  const lenis = useLenis();
+
+  // Clicking the logo while already on Home scrolls smoothly back to the top
+  // instead of doing nothing.
+  const onLogoClick = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      setOpen(false);
+      if (lenis) lenis.scrollTo(0);
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -58,6 +71,7 @@ export function Navbar() {
       >
         <Link
           to="/"
+          onClick={onLogoClick}
           className="relative flex items-center"
           aria-label="Monday home"
         >
@@ -67,6 +81,7 @@ export function Navbar() {
             alt="Monday"
             width="676"
             height="149"
+            decoding="async"
             className={cn(
               "h-[22px] w-auto transition-opacity duration-300 md:h-6",
               darkTop ? "opacity-0" : "opacity-100"
@@ -78,6 +93,7 @@ export function Navbar() {
             aria-hidden="true"
             width="676"
             height="149"
+            decoding="async"
             className={cn(
               "absolute inset-0 h-[22px] w-auto transition-opacity duration-300 md:h-6",
               darkTop ? "opacity-100" : "opacity-0"
@@ -119,6 +135,7 @@ export function Navbar() {
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-menu"
           onClick={() => setOpen((v) => !v)}
           className={cn(
             "relative flex size-10 items-center justify-center rounded-full transition-colors md:hidden",
@@ -159,6 +176,7 @@ export function Navbar() {
                   key={l.to}
                   to={l.to}
                   end={l.end}
+                  onClick={() => setOpen(false)}
                   className={({ isActive }) =>
                     cn(
                       "rounded-xl px-4 py-3 text-base transition-colors",
@@ -171,7 +189,12 @@ export function Navbar() {
                   {l.label}
                 </NavLink>
               ))}
-              <Button to="/contacts" size="lg" className="mt-3 w-full">
+              <Button
+                to="/contacts"
+                size="lg"
+                className="mt-3 w-full"
+                onClick={() => setOpen(false)}
+              >
                 Reach out
               </Button>
             </div>

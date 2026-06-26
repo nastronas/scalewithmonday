@@ -50,8 +50,8 @@ function CreativeProduction({ reduce }) {
             key={i}
             className="absolute size-9 rounded-md border"
             style={{
-              borderColor: i === 0 ? "color-mix(in oklab, var(--primary) 55%, transparent)" : LINE,
-              background: i === 0 ? "color-mix(in oklab, var(--primary) 12%, white)" : "var(--card)",
+              borderColor: i === 0 ? "rgba(238, 117, 46, 0.55)" : LINE,
+              background: i === 0 ? "#fceee6" : "var(--card)",
               left: i * 5,
               top: i * 5,
               zIndex: 3 - i,

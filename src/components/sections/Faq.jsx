@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
 import { Eyebrow } from "@/components/Eyebrow";
@@ -14,6 +14,7 @@ import { cn } from "@/lib/cn";
 export function Faq() {
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(0);
+  const baseId = useId();
 
   return (
     <section className="py-24 md:py-36">
@@ -34,12 +35,16 @@ export function Faq() {
             <ul className="divide-y divide-line border-y border-line">
               {FAQS.map((item, i) => {
                 const isOpen = open === i;
+                const btnId = `${baseId}-faq-btn-${i}`;
+                const panelId = `${baseId}-faq-panel-${i}`;
                 return (
                   <li key={item.q}>
                     <h3>
                       <button
                         type="button"
+                        id={btnId}
                         aria-expanded={isOpen}
+                        aria-controls={panelId}
                         onClick={() => setOpen(isOpen ? -1 : i)}
                         className="flex w-full items-center justify-between gap-4 py-5 text-left"
                       >
@@ -66,6 +71,9 @@ export function Faq() {
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
+                          id={panelId}
+                          role="region"
+                          aria-labelledby={btnId}
                           initial={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
                           animate={
                             reduce

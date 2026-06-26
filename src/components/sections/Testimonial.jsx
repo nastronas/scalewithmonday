@@ -10,7 +10,7 @@ export function Testimonial() {
   return (
     <section className="py-24 md:py-36">
       <div className="container-x">
-        <Reveal className="mx-auto max-w-3xl text-center">
+        <Reveal as="figure" className="mx-auto max-w-3xl text-center">
           <svg
             viewBox="0 0 24 24"
             className="mx-auto size-9 text-primary"

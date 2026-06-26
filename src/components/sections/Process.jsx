@@ -63,7 +63,7 @@ export function Process() {
                     className="absolute left-[12px] top-1.5 z-10 flex size-4 items-center justify-center rounded-full bg-primary md:left-1/2 md:-translate-x-1/2"
                     style={{
                       boxShadow:
-                        "0 0 0 4px var(--background), 0 0 18px 2px color-mix(in oklab, var(--primary) 60%, transparent)",
+                        "0 0 0 4px var(--background), 0 0 18px 2px rgba(238, 117, 46, 0.6)",
                     }}
                   >
                     <span className="size-1.5 rounded-full bg-white/90" />

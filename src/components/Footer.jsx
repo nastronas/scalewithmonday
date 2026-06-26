@@ -24,12 +24,12 @@ export function Footer() {
               decoding="async"
               className="h-11 w-auto md:h-12"
             />
-            <h2 className="mt-7 text-balance text-[1.85rem] font-semibold leading-[1.05] tracking-[-0.04em] md:text-4xl">
+            <p className="mt-7 text-balance text-[1.85rem] font-semibold leading-[1.05] tracking-[-0.04em] md:text-4xl">
               Monday is the growth partner that scales established eCommerce
               brands.
-            </h2>
+            </p>
             <div className="mt-8">
-              <p className="text-sm text-white/70">Customer support</p>
+              <p className="text-sm text-white/80">Customer support</p>
               <a
                 href={`mailto:${SITE.email}`}
                 className="mt-1 inline-block text-lg font-medium underline-offset-4 transition-opacity hover:opacity-80"
@@ -45,7 +45,7 @@ export function Footer() {
           >
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.title}>
-                <p className="text-xs uppercase tracking-[0.12em] text-white/60">
+                <p className="text-xs uppercase tracking-[0.12em] text-white/80">
                   {col.title}
                 </p>
                 <ul className="mt-4 space-y-2.5">
@@ -54,14 +54,14 @@ export function Footer() {
                       {link.to ? (
                         <Link
                           to={link.to}
-                          className="text-[0.95rem] text-white/85 transition-opacity hover:opacity-70"
+                          className="text-[0.95rem] text-white transition-opacity hover:opacity-75"
                         >
                           {link.label}
                         </Link>
                       ) : (
                         <a
                           href={link.href}
-                          className="text-[0.95rem] text-white/85 transition-opacity hover:opacity-70"
+                          className="text-[0.95rem] text-white transition-opacity hover:opacity-75"
                         >
                           {link.label}
                         </a>
@@ -74,9 +74,9 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-16 flex flex-col gap-5 border-t border-white/15 pt-7 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-5 border-t border-white/20 pt-7 text-sm text-white/90 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            {year} {SITE.fullName}. All rights reserved.
+            © {year} {SITE.fullName}. All rights reserved.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <a

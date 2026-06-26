@@ -6,7 +6,7 @@
   "homepage": "https://scalewithmonday.com",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/seo-prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

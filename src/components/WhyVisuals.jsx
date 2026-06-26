@@ -100,15 +100,16 @@ function DirectAccess({ reduce }) {
       <div className="relative flex w-32 items-center justify-between">
         <div className="absolute inset-x-2 top-1/2 h-px -translate-y-1/2 bg-white/15" />
         <motion.div
-          className="absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-primary"
-          animate={reduce ? undefined : { left: ["8%", "84%", "8%"] }}
+          className="absolute left-0 top-1/2 size-1.5 rounded-full bg-primary"
+          style={{ y: "-50%" }}
+          animate={reduce ? undefined : { x: [0, 97, 0] }}
           transition={reduce ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
         {[0, 1, 2].map((i) => (
           <span
             key={i}
             className="relative z-10 size-7 rounded-full border border-white/15 bg-white/[0.08]"
-            style={i === 0 ? { borderColor: "color-mix(in oklab, var(--primary) 60%, transparent)" } : undefined}
+            style={i === 0 ? { borderColor: "rgba(238, 117, 46, 0.6)" } : undefined}
           />
         ))}
       </div>

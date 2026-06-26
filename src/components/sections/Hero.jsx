@@ -53,7 +53,7 @@ export function Hero() {
       spot.style.opacity = "1";
       let t = 0;
       const drift = () => {
-        t += 0.006;
+        t += 0.024;
         const rect = section.getBoundingClientRect();
         const x = rect.width * (0.5 + 0.34 * Math.sin(t));
         const y = rect.height * (0.42 + 0.3 * Math.cos(t * 0.8));
@@ -171,7 +171,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[420px] md:hidden"
         style={{
           background:
-            "radial-gradient(130% 72% at 50% 0%, color-mix(in oklab, var(--primary) 24%, transparent) 0%, transparent 72%)",
+            "radial-gradient(130% 72% at 50% 0%, rgba(238, 117, 46, 0.24) 0%, transparent 72%)",
         }}
         animate={reduce ? undefined : { opacity: [0.5, 0.78, 0.5] }}
         transition={
@@ -196,7 +196,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--primary-light) 90%, white) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, #ffa071 1px, transparent 0)",
           backgroundSize: "44px 44px",
           WebkitMaskImage:
             "radial-gradient(circle 180px at var(--mx, -200px) var(--my, -200px), #000 0%, transparent 70%)",
@@ -209,7 +209,7 @@ export function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="container-x relative flex min-h-[62vh] flex-col items-center justify-center py-20 text-center md:min-h-[68vh] md:py-24"
+        className="container-x relative flex min-h-[100svh] flex-col items-center justify-center py-20 text-center md:min-h-[73vh] md:py-24"
       >
         <motion.div variants={itemNoBlur}>
           <Badge
