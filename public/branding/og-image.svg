@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <g transform="translate(120,205)">
+    <rect width="220" height="220" rx="48" fill="#0a0a0a"/>
+    <g fill="#ffffff">
+      <rect x="41"  y="127" width="35" height="52"  rx="9"/>
+      <rect x="93"  y="92"  width="35" height="87"  rx="9"/>
+      <rect x="145" y="41"  width="35" height="138" rx="9"/>
+    </g>
+  </g>
+  <text x="388" y="300" font-family="Inter, Helvetica, Arial, sans-serif" font-size="64" font-weight="800" fill="#0a0a0a">Scale with Monday</text>
+  <text x="390" y="356" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="500" fill="#6b7280">scalewithmonday.com</text>
+  <rect x="0" y="610" width="1200" height="20" fill="#0a0a0a"/>
+</svg>

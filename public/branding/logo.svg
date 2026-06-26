@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="200" viewBox="0 0 760 200" role="img" aria-label="Scale with Monday">
+  <g transform="translate(20,36)">
+    <rect width="128" height="128" rx="28" fill="#0a0a0a"/>
+    <g fill="#ffffff">
+      <rect x="24" y="74" width="20" height="30" rx="6"/>
+      <rect x="54" y="54" width="20" height="50" rx="6"/>
+      <rect x="84" y="24" width="20" height="80" rx="6"/>
+    </g>
+  </g>
+  <text x="180" y="118" font-family="Inter, Helvetica, Arial, sans-serif" font-size="52" font-weight="800" fill="#0a0a0a">Scale with Monday</text>
+</svg>
