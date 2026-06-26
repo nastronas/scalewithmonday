@@ -1,6 +1,6 @@
-# Filzy
+# Scale with Monday
 
-A minimal **React + Vite + Tailwind CSS v4 + Framer Motion** starter that auto-deploys to **GitHub Pages**.
+A minimal **React + Vite + Tailwind CSS v4 + Framer Motion** site that deploys to **GitHub Pages** at **[scalewithmonday.com](https://scalewithmonday.com)**.
 
 Two pages with navigation, one example component, a color-token theme, and a couple of demos — that's it. Build from here.
 
@@ -16,10 +16,10 @@ npm run preview  # preview the build locally
 ## Structure
 
 ```
-index.html                 # entry + Inter font
+index.html                 # entry + Inter font + SEO meta
 vite.config.js             # Vite + React + Tailwind, @/ alias
 public/.nojekyll           # don't run Jekyll on Pages
-.github/workflows/deploy.yml  # auto-deploy to GitHub Pages on push to main
+public/CNAME               # custom domain for GitHub Pages (scalewithmonday.com)
 src/
   main.jsx                 # React entry
   index.css                # 🎨 color tokens (CSS variables) + Tailwind setup
@@ -49,30 +49,34 @@ Use them as utilities anywhere: `bg-primary`, `text-foreground`, `border-border`
 
 ## Routing
 
-Uses `HashRouter`, so client-side routing **just works on GitHub Pages** with no server config (URLs look like `filzy.site/#/about`). Add pages in [src/App.jsx](src/App.jsx).
+Uses `HashRouter`, so client-side routing **just works on GitHub Pages** with no server config (URLs look like `scalewithmonday.com/#/about`). Add pages in [src/App.jsx](src/App.jsx).
 
-> Want clean URLs (`filzy.site/about`)? Swap `HashRouter` for `BrowserRouter` and add the standard GitHub Pages `404.html` SPA redirect.
+> Want clean URLs (`scalewithmonday.com/about`)? Swap `HashRouter` for `BrowserRouter` and add the standard GitHub Pages `404.html` SPA redirect.
 
 ## Deploy to GitHub Pages
 
-Fully automatic. On every push to `main`, the [workflow](.github/workflows/deploy.yml)
-builds the site, turns on GitHub Pages (source = "GitHub Actions") if it isn't
-already, and publishes — no manual Settings change needed.
+The production build in [`dist/`](dist) is committed and served by GitHub Pages.
+After changing anything in `src/`, rebuild and commit:
 
-Live URL: **https://augustas-armalis.github.io/filzy/**
+```bash
+npm run build    # regenerates ./dist (incl. CNAME + SEO meta)
+git add -A && git commit -m "Build" && git push
+```
 
-(The build uses a relative base + `HashRouter`, so it works at that project URL
-and at a root custom domain without any extra config.)
+The build uses a relative base + `HashRouter`, so the same `dist/` works both at
+the project URL `https://nastronas.github.io/scalewithmonday/` and at the root
+custom domain `https://scalewithmonday.com`.
 
-### Optional: custom domain (filzy.site)
+### Custom domain (scalewithmonday.com)
 
-`filzy.site` currently has **no DNS configured**, so it points nowhere. To use it:
+The repo already includes [`public/CNAME`](public/CNAME) with `scalewithmonday.com`,
+so the built site carries the custom-domain marker. To finish wiring it up:
 
-1. At your domain host, add apex `A` records for `filzy.site` →
+1. At your domain host, add apex `A` records for `scalewithmonday.com` →
    `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   (optionally a `CNAME` record `www` → `augustas-armalis.github.io`).
-2. Add a file `public/CNAME` containing `filzy.site` and push.
-3. Repo **Settings → Pages → Custom domain** → enter `filzy.site`, then enable
-   **Enforce HTTPS** once it verifies.
+   (optionally a `CNAME` record `www` → `nastronas.github.io`).
+2. Repo **Settings → Pages → Custom domain** → enter `scalewithmonday.com`, then
+   enable **Enforce HTTPS** once it verifies.
 
-Until DNS is set up, use the github.io URL above.
+Until DNS propagates, the site is reachable at
+`https://nastronas.github.io/scalewithmonday/`.

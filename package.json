@@ -1,9 +1,9 @@
 {
-  "name": "filzy",
+  "name": "scalewithmonday",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://filzy.site",
+  "homepage": "https://scalewithmonday.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

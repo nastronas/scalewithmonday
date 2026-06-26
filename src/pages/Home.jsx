@@ -31,7 +31,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="text-4xl font-extrabold tracking-tight"
       >
-        Filzy starter
+        Scale with Monday
       </motion.h1>
       <motion.p
         initial={{ opacity: 0 }}

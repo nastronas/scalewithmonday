@@ -5,8 +5,8 @@ import About from "@/pages/About";
 
 /*
   HashRouter is used so client-side routing works on GitHub Pages with zero
-  server config (URLs look like filzy.site/#/about). If you'd rather have clean
-  URLs (filzy.site/about), switch to BrowserRouter and add the standard
+  server config (URLs look like scalewithmonday.com/#/about). If you'd rather have clean
+  URLs (scalewithmonday.com/about), switch to BrowserRouter and add the standard
   GitHub Pages 404.html SPA redirect.
 */
 export default function App() {

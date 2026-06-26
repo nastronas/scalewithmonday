@@ -16,7 +16,7 @@ export function Layout() {
       <header className="border-b border-border">
         <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
           <Link to="/" className="font-bold">
-            Filzy
+            Scale with Monday
           </Link>
           <div className="flex gap-1">
             {links.map((l) => (
@@ -45,7 +45,7 @@ export function Layout() {
       </main>
 
       <footer className="mx-auto max-w-3xl px-6 py-10 text-sm text-muted-foreground">
-        Filzy — React + Tailwind + Framer Motion.
+        Scale with Monday — React + Tailwind + Framer Motion.
       </footer>
     </div>
   );

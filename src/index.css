@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
-  Filzy color tokens — minimal black & white.
+  Scale with Monday color tokens — minimal black & white.
   Edit these CSS variables to re-theme the whole app. They're wired into
   Tailwind below, so you use them as utilities like `bg-primary`,
   `text-foreground`, `border-border`, etc.
