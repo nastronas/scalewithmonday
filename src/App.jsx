@@ -1,32 +1,50 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LenisProvider } from "@/lib/lenis.jsx";
 import { Layout } from "@/components/Layout";
 import Home from "@/pages/Home";
-import About from "@/pages/About";
 
 /*
-  HashRouter is used so client-side routing works on GitHub Pages with zero
-  server config (URLs look like scalewithmonday.com/#/about). If you'd rather have clean
-  URLs (scalewithmonday.com/about), switch to BrowserRouter and add the standard
-  GitHub Pages 404.html SPA redirect.
+  App — BrowserRouter for clean URLs (/about, /contacts, legal pages). Home is
+  eager (it is the common entry); the rest of the routes are lazy loaded for a
+  lighter initial bundle. The public/404.html SPA redirect lets GitHub Pages
+  serve deep links. Lenis powers smooth scroll. No data files / no schemas.
+  Instruction: build the Monday agency marketing site.
 */
+
+const About = lazy(() => import("@/pages/About"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const Privacy = lazy(() => import("@/pages/Privacy"));
+const Terms = lazy(() => import("@/pages/Terms"));
+const Refund = lazy(() => import("@/pages/Refund"));
+const Careers = lazy(() => import("@/pages/Careers"));
+const Affiliate = lazy(() => import("@/pages/Affiliate"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+
+function RouteFallback() {
+  return <div className="min-h-[70vh]" aria-hidden="true" />;
+}
+
 export default function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route
-            path="*"
-            element={
-              <div className="mx-auto max-w-3xl px-6 py-16">
-                <h1 className="text-2xl font-bold">404</h1>
-                <p className="mt-2 text-muted-foreground">Page not found.</p>
-              </div>
-            }
-          />
-        </Route>
-      </Routes>
-    </HashRouter>
+    <BrowserRouter>
+      <LenisProvider>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contacts" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/refund" element={<Refund />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/affiliate" element={<Affiliate />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </LenisProvider>
+    </BrowserRouter>
   );
 }

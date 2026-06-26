@@ -1,52 +1,27 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { cn } from "@/lib/cn";
-
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-];
+import { Outlet } from "react-router-dom";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { HashScroll } from "@/components/HashScroll";
+import { CursorFollower } from "@/components/CursorFollower";
 
 /*
-  App shell: a small top nav that stays put while the routed page renders
-  into <Outlet />.
+  Layout — app shell: fixed Navbar, routed <Outlet />, Footer, ScrollToTop, and
+  the custom cursor follower (fine pointer only). No data files / no schemas.
+  Instruction: build the Monday agency marketing site.
 */
+
 export function Layout() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="border-b border-border">
-        <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <Link to="/" className="font-bold">
-            Scale with Monday
-          </Link>
-          <div className="flex gap-1">
-            {links.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === "/"}
-                className={({ isActive }) =>
-                  cn(
-                    "rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-muted",
-                    isActive
-                      ? "font-semibold text-primary"
-                      : "text-muted-foreground"
-                  )
-                }
-              >
-                {l.label}
-              </NavLink>
-            ))}
-          </div>
-        </nav>
-      </header>
-
-      <main>
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <ScrollToTop />
+      <HashScroll />
+      <CursorFollower />
+      <Navbar />
+      <main className="flex-1">
         <Outlet />
       </main>
-
-      <footer className="mx-auto max-w-3xl px-6 py-10 text-sm text-muted-foreground">
-        Scale with Monday — React + Tailwind + Framer Motion.
-      </footer>
+      <Footer />
     </div>
   );
 }

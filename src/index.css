@@ -1,41 +1,253 @@
 @import "tailwindcss";
 
 /*
-  Scale with Monday color tokens — minimal black & white.
-  Edit these CSS variables to re-theme the whole app. They're wired into
-  Tailwind below, so you use them as utilities like `bg-primary`,
-  `text-foreground`, `border-border`, etc.
+  Monday — brand design system.
+  Tokens drive Tailwind utilities (bg-background, text-foreground, bg-primary,
+  text-muted, border-line ...). Edit a value here and the whole site updates.
 */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --primary: #0a0a0a; /* black */
-  --primary-foreground: #ffffff;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-  --border: #e5e5e5;
-  --radius: 0.75rem;
+  --background: #fefcfb; /* warm cream white */
+  --foreground: #161412; /* near black, warm */
+  --primary: #ee752e; /* brand orange */
+  --primary-light: #ff9561; /* lighter orange */
+  --muted-foreground: #575757; /* alt text */
+
+  --card: #ffffff;
+  --panel: #f5f2ef; /* light warm gray component boxes (resting) */
+  --panel-strong: #efeae5;
+  --line: #ece7e1; /* hairline borders */
+
+  /* Interaction surfaces. Hovers stay ultra light warm gray, never dark.
+     #575757 is alt / secondary text only, never a hover background. */
+  --hover: #f6f4f2; /* ultra light hover surface, lighter than panel */
+  --hover-strong: #f2efec; /* ghost / secondary button hover fill */
+
+  --ink: #161412; /* dark surface base */
+  --night: #100f0e; /* hero / footer near black */
+
+  --radius: 1.25rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
+  --color-primary-light: var(--primary-light);
+  --color-muted: var(--muted-foreground);
+  --color-panel: var(--panel);
+  --color-panel-strong: var(--panel-strong);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-night: var(--night);
+  --color-hover: var(--hover);
+  --color-hover-strong: var(--hover-strong);
 
   --radius-lg: var(--radius);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Rethink Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    /* Lenis owns smooth scrolling, so no CSS scroll-behavior here (it would
+       fight Lenis). Anchor offset for the fixed nav is still handy. */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Lenis baseline. Smoothing handled in JS; disabled under reduced motion. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  /* Thin orange custom scrollbar. */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 9999px;
+    border: 2px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in oklab, var(--primary) 80%, black);
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    font-weight: 500; /* Rethink Sans medium as the base weight */
+    letter-spacing: -0.02em; /* tight negative tracking everywhere */
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
+
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: -0.045em; /* tighter on display type */
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Every interactive element gets a pointer cursor. */
+  a,
+  button,
+  label[for],
+  summary,
+  [role="button"],
+  [role="link"],
+  [role="option"],
+  [role="menuitem"],
+  select,
+  [tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  /* Consistent page gutter + max width */
+  .container-x {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 78rem;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .container-x { padding-inline: 2.5rem; }
+  }
+
+  /* Frosted glass surface */
+  .glass {
+    background-color: color-mix(in oklab, var(--background) 62%, transparent);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+  }
+  .glass-dark {
+    background-color: color-mix(in oklab, var(--night) 55%, transparent);
+    backdrop-filter: saturate(160%) blur(18px);
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+  }
+
+  /* Soft warm gray component card */
+  .panel {
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+  }
+
+  /* Orange gradient text */
+  .text-gradient {
+    background-image: linear-gradient(100deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Subtle radial glow used on dark surfaces */
+  .glow-orange {
+    background:
+      radial-gradient(60% 60% at 50% 0%, color-mix(in oklab, var(--primary) 26%, transparent) 0%, transparent 70%);
+  }
+
+  /* Marquee track */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 60s) linear infinite;
+  }
+  .marquee-reverse { animation-direction: reverse; }
+  /* Pause on hover only on devices that truly hover with a fine pointer, so
+     the marquee never stops on touch screens. */
+  @media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+    .marquee-paused:hover .marquee-track { animation-play-state: paused; }
+  }
+
+  /* Custom cursor follower: only on fine pointer devices. */
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    pointer-events: none;
+    border-radius: 9999px;
+    background-color: var(--primary);
+    mix-blend-mode: normal;
+  }
+  @media (hover: none), (pointer: coarse), (max-width: 767px) {
+    .cursor-dot { display: none !important; }
+  }
+
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+  /* Vertical marquee for the creative wall columns. */
+  .vmarquee-track {
+    display: flex;
+    flex-direction: column;
+    animation: vmarquee var(--vmarquee-duration, 30s) linear infinite;
+  }
+  .vmarquee-reverse { animation-direction: reverse; }
+
+  @keyframes vmarquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(0, -50%, 0); }
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .marquee-track { animation: none; }
+  .vmarquee-track { animation: none; }
 }

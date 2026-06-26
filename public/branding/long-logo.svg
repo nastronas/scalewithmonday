@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40" role="img" aria-label="Monday">
+<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#FF9561"/><stop offset="1" stop-color="#EE752E"/></linearGradient></defs>
+<g fill="url(#lg)">
+<path d="M7 19 L13 7 L20 7 L14 19 Z"/>
+<path d="M19 19 L25 7 L32 7 L26 19 Z"/>
+<path d="M5 33 L11 21 L18 21 L12 33 Z"/>
+<path d="M17 33 L23 21 L30 21 L24 33 Z"/>
+</g>
+<text x="48" y="28" font-family="Rethink Sans, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="-1.2" fill="#161412">Monday</text>
+</svg>
